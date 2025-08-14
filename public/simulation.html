@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KidVestor Simulator – Real‑Time Trading</title>
+    <!-- Fonts and styles -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Chart.js for portfolio charting -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container nav-content">
+        <a href="index.html" class="logo">KidVestor</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="simulation.html" class="active">Simulator</a>
+          <a href="#">Courses</a>
+          <a href="#">Marketplace</a>
+          <a href="#">Challenges</a>
+        </div>
+        <div class="nav-buttons">
+          <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+      </div>
+    </nav>
+    <section class="simulator">
+      <div class="container">
+        <h2>Real‑Time Stock Simulator</h2>
+        <p style="margin-bottom: 1rem;">
+          Search for real stocks, add them to your watchlist, and trade using
+          virtual money. Your portfolio updates in real time with live market
+          prices. Complete 30 simulated days to see if you qualify for the
+          investor marketplace.
+        </p>
+        <!-- Search bar for stocks -->
+        <div class="market-search">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for a stock (e.g., AAPL, TSLA)"
+          />
+          <button id="searchBtn" class="btn btn-primary btn-small">Search</button>
+        </div>
+        <!-- Search results list -->
+        <ul id="searchResults" style="list-style: none; margin-bottom: 1rem;"></ul>
+        <!-- Market table -->
+        <h3>Market</h3>
+        <table class="market-table" id="marketTable">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th class="actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <!-- Portfolio table -->
+        <h3>Your Portfolio</h3>
+        <table class="portfolio-table" id="portfolioTable">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Quantity</th>
+              <th>Avg Cost</th>
+              <th>Current Price</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <!-- Controls -->
+        <button id="advanceDayBtn" class="btn btn-secondary">
+          Advance Day
+        </button>
+        <div class="result-message" id="resultMessage"></div>
+        <!-- Chart -->
+        <div class="chart-container">
+          <canvas id="portfolioChart" height="300"></canvas>
+        </div>
+        <!-- Order History -->
+        <h3>Order History</h3>
+        <table class="history-table" id="historyTable">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Action</th>
+              <th>Symbol</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        &copy; <span id="year"></span> KidVestor. All rights reserved.
+      </div>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="simulation.js"></script>
+  </body>
+</html>

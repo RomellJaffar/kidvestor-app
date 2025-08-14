@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KidVestor Investor Profile</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container nav-content">
+        <a href="index.html" class="logo">KidVestor</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="simulation.html">Simulator</a>
+          <a href="courses.html">Courses</a>
+          <a href="marketplace.html">Marketplace</a>
+          <a href="challenges.html">Challenges</a>
+        </div>
+      </div>
+    </nav>
+    <section class="simulator">
+      <div class="container">
+        <h2>Investor Profile</h2>
+        <p>
+          Profiles of top youth investors will be displayed here with their
+          performance statistics and a way to contact them. This page will be
+          dynamically generated when the marketplace is launched.
+        </p>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        &copy; <span id="year"></span> KidVestor. All rights reserved.
+      </div>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
