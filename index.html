@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KidVestor Real‑Time</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>📈 Welcome to KidVestor Real-Time</h1>
+  <form id="search-form">
+    <input type="text" id="search-input" placeholder="Search stock (e.g. AAPL)" required />
+    <button type="submit">Search</button>
+  </form>
+  <div id="results"></div>
+
+  <script>
+    const form = document.getElementById('search-form');
+    const input = document.getElementById('search-input');
+    const resultsDiv = document.getElementById('results');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const query = input.value;
+      resultsDiv.innerHTML = 'Searching...';
+
+      const res = await fetch(`/api/search?q=${query}`);
+      const data = await res.json();
+
+      if (!data.bestMatches || data.bestMatches.length === 0) {
+        resultsDiv.innerHTML = 'No results found.';
+        return;
+      }
+
+      resultsDiv.innerHTML = '';
+      data.bestMatches.forEach(match => {
+        const symbol = match['1. symbol'];
+        const name = match['2. name'];
+
+        const div = document.createElement('div');
+        div.innerHTML = `<strong>${symbol}</strong>: ${name}`;
+        div.addEventListener('click', () => getQuote(symbol));
+        resultsDiv.appendChild(div);
+      });
+    });
+
+    async function getQuote(symbol) {
+      resultsDiv.innerHTML = `Getting quote for ${symbol}...`;
+      const res = await fetch(`/api/quote?symbol=${symbol}`);
+      const data = await res.json();
+      const quote = data['Global Quote'];
+
+      if (!quote) {
+        resultsDiv.innerHTML = 'No quote found.';
+        return;
+      }
+
+      resultsDiv.innerHTML = `
+        <h2>${quote['01. symbol']}</h2>
+        <p>Price: $${quote['05. price']}</p>
+        <p>Change: ${quote['09. change']} (${quote['10. change percent']})</p>
+      `;
+    }
+  </script>
+</body>
+</html>
