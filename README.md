@@ -1,2 +1,3 @@
-# Kidvestor App
-My real-time stock simulator for kids learning to invest.
+# Kidvestor Pro
+
+Instructions to deploy the app...
